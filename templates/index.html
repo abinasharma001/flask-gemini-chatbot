@@ -13,20 +13,20 @@
     padding: 0;
     box-sizing: border-box;
   }
-
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f2027 0%, #203a43 25%, #2c5364 50%, #667eea 75%, #764ba2 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    position: relative;
-    overflow-x: hidden;
-  }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 25%, #2c5364 50%, #667eea 75%, #764ba2 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
 
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
@@ -159,23 +159,27 @@
     fill: #ffffff;
   }
 
-  #chat_container {
-    width: 90%;
-    max-width: 700px;
-    height: 500px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    padding: 30px;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.4), inset 0 0 80px rgba(102,126,234,0.1);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid rgba(255,255,255,0.15);
-    z-index: 1;
-    animation: scaleIn 0.5s ease-out;
-    position: relative;
-  }
+#chat_container {
+  width: 90%;
+  max-width: 700px;
+  flex: 1;
+  min-height: 400px;
+  max-height: 80vh;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 20px 25px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4), inset 0 0 80px rgba(102,126,234,0.1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 2px solid rgba(255,255,255,0.15);
+  z-index: 1;
+  animation: scaleIn 0.5s ease-out;
+  position: relative;
+}
+
 
   #chat_container::before {
     content: '';
@@ -200,15 +204,17 @@
     }
   }
 
-  .chat-bubble {
-    padding: 14px 18px;
-    margin: 8px 0;
-    border-radius: 20px;
-    max-width: 75%;
-    word-wrap: break-word;
-    animation: bubbleIn 0.4s ease-out;
-    position: relative;
-  }
+.chat-bubble {
+  padding: 14px 18px;
+  margin: 8px 0;
+  border-radius: 18px;
+  max-width: 80%;
+  word-wrap: break-word;
+  animation: bubbleIn 0.4s ease-out;
+  position: relative;
+  display: inline-block;
+  line-height: 1.5;
+}
 
   @keyframes bubbleIn {
     from {
@@ -221,16 +227,15 @@
     }
   }
 
-  .user {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    font-weight: 500;
-    position: relative;
-    overflow: hidden;
-  }
+/* USER MESSAGES */
+.user {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  font-weight: 500;
+}
 
   .user::before {
     content: '';
@@ -249,16 +254,16 @@
     100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
   }
 
-  .bot {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #feca57 100%);
-    color: white;
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-    box-shadow: 0 6px 20px rgba(240, 147, 251, 0.5);
-    font-weight: 500;
-    position: relative;
-    overflow: hidden;
-  }
+/* BOT MESSAGES */
+.bot {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #feca57 100%);
+  color: white;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+  font-weight: 500;
+}
+
 
   .bot::before {
     content: '🤖';
@@ -278,6 +283,12 @@
     transform: translateY(-50%);
     font-size: 28px;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+    /* Remove the emoji icons to prevent squeezing */
+  .user::after,
+  .bot::before {
+    display: none;
   }
 
   #input_container {
@@ -457,8 +468,11 @@ async function sendMessage() {
     botBubble.className = "bot chat-bubble";
     botBubble.textContent = data.response;
     chatContainer.appendChild(botBubble);
-
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+    // smooth scroll to bottom
+    chatContainer.scrollTo({ 
+    top: chatContainer.scrollHeight, 
+    behavior: "smooth" 
+  });
 }
 
 document.getElementById("user_input").addEventListener("keypress", function(e) {
