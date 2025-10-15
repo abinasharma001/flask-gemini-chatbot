@@ -1,0 +1,5 @@
+Flask
+python-dotenv
+google-generativeai
+gunicorn
+you can generate your own gemini api key
