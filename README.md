@@ -333,7 +333,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact & Support
 
-- **Author**: Abina Sharma
+- **Author**: Abinash Sharma
 - **Repository**: [flask-gemini-chatbot](https://github.com/abinasharma001/flask-gemini-chatbot)
 - **Issues**: [Report a bug](https://github.com/abinasharma001/flask-gemini-chatbot/issues)
 
