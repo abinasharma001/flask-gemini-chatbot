@@ -40,7 +40,7 @@ Flask Gemini Chatbot is a modern, lightweight web application that leverages Goo
 
 Whether you're looking to integrate AI capabilities into your application, learn about AI APIs, or create your own custom chatbot, this project serves as an excellent starting point.
 
-![Project Logo](static/assets/prlogo.png)
+[![Project Preview](static/assets/prlogo.png)](https://mr-a-your-ai-chatbot.onrender.com/)
 
 
 ---
