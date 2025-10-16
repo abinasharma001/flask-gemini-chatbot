@@ -36,6 +36,7 @@
 
 ## 🌟 Overview
 
+[![Alt Text](path/to/image.png)](https://mr-a-your-ai-chatbot.onrender.com/)
 Flask Gemini Chatbot is a modern, lightweight web application that leverages Google's powerful Gemini AI model to create an intelligent conversational assistant. Built with Flask and Python, this chatbot provides a seamless user experience with real-time responses and a clean, intuitive interface.
 
 Whether you're looking to integrate AI capabilities into your application, learn about AI APIs, or create your own custom chatbot, this project serves as an excellent starting point.
